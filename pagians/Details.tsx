@@ -26,23 +26,8 @@ const styles = StyleSheet.create({
     borderColor: "#DEB887",
     borderRadius: 4,
     marginHorizontal:12
-  },
-  input: {
-    marginBottom: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-  },
-  task: {
-    marginBottom: 5,
-    marginTop:5,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-  },
+  }
+
 });
 
 
