@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextInput, FlatList, Button, View, Text, ToastAndroid } from "react-native";
+import { TextInput, FlatList, Button, View, Text, StyleSheet } from "react-native";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../App'
 
@@ -17,7 +17,7 @@ const Home = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
   const addTask = () => {
     if(taskName.trim().length < 4 || taskName.trim().length == 0){
       alert('O nome da tarefa deve conter no minimo 4 caractéres')
-      return
+      return;
     }
 
     const newTask: Task = {
@@ -35,14 +35,14 @@ const Home = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
   };
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <TextInput onChangeText={setTaskName} value={taskName} />
-      <Button title="+" onPress={addTask} />
-      <Button title="Clear" onPress={clearTasks} />
+    <View style={styles.container}>
+      <TextInput style={styles.input} onChangeText={setTaskName} value={taskName} />
+      <Button title="Add +" onPress={addTask} color="#ADD8E6"/>
+      <Button title="Clear -" onPress={clearTasks} color="#F08080"/>
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
-        <Text onPress={() => navigation.navigate('Details', { task: item })}>
+        <Text style={styles.task} onPress={() => navigation.navigate('Details', { task: item })}>
       {"Nome da Tarefa: " + item.name}
     </Text>
   )}
@@ -51,5 +51,28 @@ const Home = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
   );
 }
 
-export default Home
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    paddingHorizontal: 20,
+  },
+  input: {
+    marginBottom: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  task: {
+    marginBottom: 5,
+    marginTop:5,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+});
+
+export default Home;
 
