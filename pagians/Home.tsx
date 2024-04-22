@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextInput, FlatList, Button, View, Text } from "react-native";
+import { TextInput, FlatList, Button, View, Text, ToastAndroid } from "react-native";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../App'
 
@@ -15,6 +15,11 @@ const Home = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const addTask = () => {
+    if(taskName.trim().length < 4 || taskName.trim().length == 0){
+      alert('O nome da tarefa deve conter no minimo 4 caractéres')
+      return
+    }
+
     const newTask: Task = {
         name: taskName,
         createdAt: new Date(), 
